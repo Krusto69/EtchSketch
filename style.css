@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 750px;
+}
+
+
+.row {
+    display: flex;
+    /*justify-content: space-around;*/
+    align-items: center;
+}
+
+.block{
+    height: 25px;
+    width: 25px;
+    margin: 5px;
+    background-color: red;
+}
