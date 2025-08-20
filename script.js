@@ -1,19 +1,17 @@
-
-
-function createGrid() {
-    let body = document.querySelector("body");
+function createGrid(size) {
+    let container = document.querySelector(".container");
     let grid = document.createElement("div");
     grid.classList.add("grid");
-    for(let i=0;i<200;i++){
-        grid.appendChild(createRow())
+    for(let i=0;i<size;i++){
+        grid.appendChild(createRow(size))
     }
-    body.appendChild(grid);
+    container.appendChild(grid);
 }
 
-function createRow(){
+function createRow(size){
     let row = document.createElement("div");
     row.classList.add("row");
-    for(let i=0;i<200;i++){
+    for(let i=0;i<size;i++){
         row.appendChild(createBlock());
     }
     return row
@@ -31,8 +29,32 @@ function turnBlue(event){
     event.target.style.backgroundColor = "Blue";
 }
 
-/*function turnRed(event){
-    event.target.style.backgroundColor = "Red";
-}*/
+function popupthing(){
+    let popup = document.querySelector("#popup");
+    popup.showModal();
+}
 
-createGrid();
+function cancelPopup(){
+    let popup = document.querySelector("#popup");
+    popup.close();
+}
+
+function reset(){
+    const grid = document.querySelector(".grid");
+    if (grid) grid.remove();
+    let gridSize = document.querySelector("#gridSize").value;
+    createGrid(gridSize);
+    cancelPopup();
+}
+
+
+const resetButton = document.querySelector(".resetButton");
+resetButton.addEventListener("click", popupthing);
+
+const cancelButton = document.querySelector("#cancelButton");
+cancelButton.addEventListener("click", cancelPopup);
+
+const okButton = document.querySelector("#okButton");
+okButton.addEventListener("click", reset);
+
+createGrid(100);
